@@ -1,1 +1,1 @@
-# arduino-bluetooth-slack-weather
+# arduino-slack-weather
