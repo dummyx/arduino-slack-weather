@@ -1,17 +1,24 @@
-#include <SI114X.h>
+#include <Wire.h>
+
+#include "Arduino.h"
+#include "SI114X.h"
 
 #define WATER_SENSOR 2
-SI114X si1141;
+
+SI114X si1145 = SI114X();
 
 long c = 0;
 
 void setup() {
   Serial.begin(9600);
+  while (!si1145.Begin()) {
+    delay(1000);
+  }
   pinMode(WATER_SENSOR, INPUT);
 }
 
 int getStatus() {
-  return (digitalRead(WATER_SENSOR) ? 0 : 2) + (si1141.ReadVisible() < 256 ? 1 : 0);
+  return (digitalRead(WATER_SENSOR) ? 0 : 2) + (si1145.ReadVisible() < 262 ? 1 : 0);
 }
 
 void loop() {
