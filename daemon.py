@@ -9,6 +9,7 @@ BAUDRATE = 9600
 
 BOT_TOKEN = os.environ['BOT_TOKEN']
 USER_TOKEN = os.environ['USER_TOKEN']
+CHANNEL_ID = os.environ['CHANNEL_ID']
 
 BOT_HEADERS = {'Authorization': 'Bearer ' + BOT_TOKEN,
                'Content-Type': 'application/json; charset=utf-8'}
@@ -43,7 +44,7 @@ def main():
 def send_message(s: int):
     s = "it's raining" if s >= 2 else "now it's sunny" if s <= 0 else "it's cloudy"
     payload = {
-        "channel": "C03HAES6HFX",
+        "channel": CHANNEL_ID,
         "text": s
     }
     requests.post(SLACK_MESSAGE_API_ENDPOINT, data=json.dumps(payload),
