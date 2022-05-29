@@ -25,11 +25,11 @@ CLOUDY_EMOJI = ':cloud:'
 
 VALID_INPUT = ['0', '1', '2']
 
+
 def main():
     ser = serial.Serial(ARDUINO_DEVICE_PATH, BAUDRATE, timeout=0)
     oldStatus = 0
     while True:
-        s = ''
         if ser.in_waiting > 0:
             s = ser.read().decode('utf-8')
             if s in VALID_INPUT:
@@ -40,14 +40,13 @@ def main():
                     send_message(currentStatus)
             
 
-
 def send_message(s: int):
     s = "it's raining" if s >= 2 else "now it's sunny" if s <= 0 else "it's cloudy"
     payload = {
         "channel": "C03HAES6HFX",
         "text": s
     }
-    r = requests.post(SLACK_MESSAGE_API_ENDPOINT, data=json.dumps(payload),
+    requests.post(SLACK_MESSAGE_API_ENDPOINT, data=json.dumps(payload),
                       headers=BOT_HEADERS)
 
 
@@ -59,8 +58,9 @@ def change_status(s: int):
             "status_expiration": 0
         }
     }
-    r = requests.post(SLACK_STATUS_API_ENDPOINT, data=json.dumps(payload),
+    requests.post(SLACK_STATUS_API_ENDPOINT, data=json.dumps(payload),
                       headers=USER_HEADERS)
+
 
 if __name__ == '__main__':
     main()
