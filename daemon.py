@@ -21,7 +21,7 @@ SLACK_STATUS_API_ENDPOINT = 'https://slack.com/api/users.profile.set'
 SLACK_MESSAGE_API_ENDPOINT = 'https://slack.com/api/chat.postMessage'
 
 SUNNY_EMOJI = ':sunny:'
-RAINY_EMOJI = ':cloud_rain:'
+RAINY_EMOJI = ':rain_cloud:'
 CLOUDY_EMOJI = ':cloud:'
 
 VALID_INPUT = ['0', '1', '2']
