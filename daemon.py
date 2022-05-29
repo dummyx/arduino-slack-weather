@@ -42,10 +42,9 @@ def main():
             
 
 def send_message(s: int):
-    s = "it's raining" if s >= 2 else "now it's sunny" if s <= 0 else "it's cloudy"
     payload = {
         "channel": CHANNEL_ID,
-        "text": s
+        "text": "it's raining" if s >= 2 else "now it's sunny" if s <= 0 else "it's cloudy"
     }
     requests.post(SLACK_MESSAGE_API_ENDPOINT, data=json.dumps(payload),
                       headers=BOT_HEADERS)
