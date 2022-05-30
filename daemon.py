@@ -32,7 +32,10 @@ def main():
     oldStatus = 0
     while True:
         if ser.in_waiting > 0:
-            s = ser.read().decode('utf-8')
+            try:
+                s = ser.read().decode('utf-8')
+            except UnicodeDecodeError:
+                continue
             if s in VALID_INPUT:
                 currentStatus = int(s)
                 if currentStatus != oldStatus:
